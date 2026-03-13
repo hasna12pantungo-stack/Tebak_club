@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Tebak Klub Sepak Bola</title>
+
+<style>
+body{
+font-family:Arial;
+background:#0f172a;
+color:white;
+text-align:center;
+}
+
+h1{
+color:yellow;
+}
+
+img{
+width:200px;
+margin:20px;
+}
+
+input{
+padding:10px;
+font-size:18px;
+border-radius:10px;
+border:none;
+}
+
+button{
+padding:10px 20px;
+font-size:18px;
+background:green;
+color:white;
+border:none;
+border-radius:10px;
+margin-top:10px;
+}
+
+#hasil{
+font-size:22px;
+margin-top:20px;
+}
+
+</style>
+</head>
+
+<body>
+
+<h1>⚽ Tebak Klub Sepak Bola</h1>
+
+<img id="logo" src="">
+
+<br>
+
+<input type="text" id="jawaban" placeholder="Tulis nama klub">
+
+<br>
+
+<button onclick="cekJawaban()">Jawab</button>
+
+<p id="hasil"></p>
+
+<script>
+
+let nomor = 0;
+
+let klub = [
+
+{name:"Real Madrid", logo:"https://upload.wikimedia.org/wikipedia/en/5/56/Real_Madrid_CF.svg"},
+{name:"Barcelona", logo:"https://upload.wikimedia.org/wikipedia/en/4/47/FC_Barcelona_%28crest%29.svg"},
+{name:"Manchester United", logo:"https://upload.wikimedia.org/wikipedia/en/7/7a/Manchester_United_FC_crest.svg"},
+{name:"Chelsea", logo:"https://upload.wikimedia.org/wikipedia/en/c/cc/Chelsea_FC.svg"},
+{name:"Liverpool", logo:"https://upload.wikimedia.org/wikipedia/en/0/0c/Liverpool_FC.svg"},
+{name:"Manchester City", logo:"https://upload.wikimedia.org/wikipedia/en/e/eb/Manchester_City_FC_badge.svg"},
+{name:"Juventus", logo:"https://upload.wikimedia.org/wikipedia/en/1/15/Juventus_FC_2017_logo.svg"},
+{name:"AC Milan", logo:"https://upload.wikimedia.org/wikipedia/commons/d/d0/Logo_of_AC_Milan.svg"},
+{name:"Inter Milan", logo:"https://upload.wikimedia.org/wikipedia/commons/0/05/FC_Internazionale_Milano_2021.svg"},
+{name:"Bayern Munich", logo:"https://upload.wikimedia.org/wikipedia/en/1/1f/FC_Bayern_München_logo_%282017%29.svg"}
+
+];
+
+function tampilkanKlub(){
+document.getElementById("logo").src = klub[nomor].logo;
+}
+
+function cekJawaban(){
+
+let input = document.getElementById("jawaban").value.toLowerCase();
+let benar = klub[nomor].name.toLowerCase();
+
+if(input === benar){
+
+document.getElementById("hasil").innerHTML="✅ Benar!";
+nomor++;
+
+if(nomor >= klub.length){
+document.getElementById("hasil").innerHTML="🏆 Kamu Menang!";
+return;
+}
+
+setTimeout(()=>{
+document.getElementById("jawaban").value="";
+document.getElementById("hasil").innerHTML="";
+tampilkanKlub();
+},1000);
+
+}
+
+else{
+document.getElementById("hasil").innerHTML="❌ Salah!";
+}
+
+}
+
+tampilkanKlub();
+
+</script>
+
+</body>
+</html>
